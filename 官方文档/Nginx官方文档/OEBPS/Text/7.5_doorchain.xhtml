@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>nginx防盗链</h2>
+
+  <p>location ~* \.(gif|jpg|png|swf|flv)$ {<br />
+  root html<br />
+  valid_referers none blocked *.nginxcn.com;<br />
+  if ($invalid_referer) {<br />
+  rewrite ^/ <a href="http://www.nginx.cn/" id="url_1" onclick="return checkUrl(this)" target="_blank">www.nginx.cn</a><br />
+  #return 404;<br />
+  }<br />
+  }<br />
+  前面的root可以不要如果你在server{}中有设置可以不需要设定<br /></p>
+</body>
+</html>

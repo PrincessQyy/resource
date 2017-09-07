@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpSSI模块</h2>
+
+  <p>此模块处理服务器端包含文件(ssi)的处理. 列表中的命令当前并未完全支持.</p>
+
+  <p>__配置示例__</p>
+  <pre>
+location / {
+: ssi  on;
+}
+</pre>
+
+  <h3 class="sigil_not_in_toc">Directives</h3>
+
+  <ul>
+    <li>[#ssi ssi]</li>
+
+    <li>[#ssi_silent_errors ssi_silent_errors]</li>
+
+    <li>[#ssi_types ssi_types]</li>
+
+    <li>[#ssi_value_length ssi_value_length]</li>
+  </ul>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">ssi</h3>
+
+  <p><b>语法:</b> <i>ssi [ on | off ]</i></p>
+
+  <p><b>默认值:</b> <i>ssi off</i></p>
+
+  <p><b>作用域:</b> <i>http, server, location</i> 在location作用域中将启用SSI文件处理.</p>
+
+  <h3 class="sigil_not_in_toc">ssi_silent_errors</h3>
+
+  <p><b>语法:</b> <i>ssi_silent_errors [on|off]</i></p>
+
+  <p><b>默认值:</b> <i>ssi_silent_errors off</i></p>
+
+  <p><b>作用域:</b> <i>http, server, location</i></p>
+
+  <p>在处理SSI文件出错时不输出错误提示:"[an error occurred while processing the directive] "</p>
+
+  <h3 class="sigil_not_in_toc">ssi_types</h3>
+
+  <p><b>语法:</b> <i>ssi_types mime-type [mime-type ...]</i></p>
+
+  <p><b>默认值:</b> <i>ssi_types text/html</i></p>
+
+  <p><b>作用域:</b> <i>http, server, location</i></p>
+
+  <p>Enables SSI processing for MIME-types in addition to "text/html" types.</p>
+
+  <h3 class="sigil_not_in_toc">ssi_value_length</h3>
+
+  <p><b>语法:</b> <i>ssi_value_length length</i></p>
+
+  <p><b>默认值:</b> <i>ssi_value_length 256</i></p>
+
+  <p><b>作用域:</b> <i>http, server, location</i></p>
+
+  <p>定义SSI允许使用的参数长度</p>
+
+  <h3 class="sigil_not_in_toc">SSI 命令</h3>
+
+  <p>格式示例如下:</p>
+  <pre>: &lt;!--#  command parameter1=value parameter2=value... --&gt;
+</pre>
+
+  <p>支持的SSI 命令如下:</p>
+
+  <ul>
+    <li><code>block</code> — command describes the block, which can be used as a silencer in command <code>include</code>. Inside the block there can be commands <code>SSI</code>.</li>
+
+    <li><i>name</i> — the name of the block. For example:</li>
+  </ul>
+
+  <p>: &lt;!--# block name="one" --&gt; : the silencer : &lt;!--# endblock --&gt; :</p>
+
+  <ul>
+    <li><code>config</code> — assigns some parameters with working SSI.</li>
+
+    <li><i>errmsg</i> — the line, which is derived with the error during the SSI processing. By default, this string is used: "[an error occurred while processing the directive] "</li>
+
+    <li><i>timefmt</i> — the time formatting string, as used in strftime(3). By default, this string is used:</li>
+  </ul>
+
+  <p>: "%A,&nbsp;%d-%b-%Y&nbsp;%H:%M:%S&nbsp;%Z" : To include time in seconds use the format "%s" as well.</p>
+
+  <ul>
+    <li><code>echo</code> - print a variable</li>
+
+    <li><i>var</i> — the name of the variable</li>
+
+    <li><i>default</i> - if the variable is empty, display this string. Defaults to "none". Example:</li>
+  </ul>
+
+  <p>: &lt;!--# echo var="name" default="no" --&gt; : &lt;/code&gt; is the same as &lt;code&gt; : &lt;!--# if expr="$name" --&gt;&lt;!--# echo var="name" --&gt;&lt;!--# else --&gt;no&lt;!--# endif --&gt; :</p>
+
+  <ul>
+    <li><code>if / elif / else / endif</code> — conditionally include text or other directives. Usage:</li>
+  </ul>
+
+  <dl>
+    <dd>...</dd>
+
+    <dd>...</dd>
+
+    <dd>...</dd>
+
+    <dd>Only one level of nesting is possible.</dd>
+  </dl>
+
+  <ul>
+    <li>
+      <i>expr</i> — the expression to evaluate. It can be a variable:
+      <pre>
+</pre>
+    </li>
+  </ul>
+
+  <dl>
+    <dd>&lt;!--# if expr="$name" --&gt;</dd>
+
+    <dd>&lt;/code&gt; A string comparison: &lt;code&gt;</dd>
+
+    <dd>&lt;!--# if expr="$name = text" --&gt;</dd>
+
+    <dd>&lt;!--# if expr="$name&nbsp;!= text" --&gt;</dd>
+
+    <dd>&lt;/code&gt; Or a regex match: &lt;code&gt;</dd>
+
+    <dd>&lt;!--# if expr="$name = /text/" --&gt;</dd>
+
+    <dd>&lt;!--# if expr="$name&nbsp;!= /text/" --&gt;</dd>
+
+    <dd>Если в text встречаются переменные, то производится подстановка их значений.</dd>
+  </dl>
+
+  <ul>
+    <li>&lt;code&gt;include — include a document from another source.</li>
+
+    <li>
+      <i>file</i> — include a file, e.g.
+      <pre>
+</pre>
+    </li>
+  </ul>
+
+  <p>: &lt;!--# include file="footer.html" --&gt; :</p>
+
+  <ul>
+    <li><i>virtual</i> — include a request, e.g.</li>
+  </ul>
+
+  <dl>
+    <dd>&lt;!--# include virtual="/remote/body.php?argument=value" --&gt;</dd>
+
+    <dd>Multiple requests will be issued in parallel. If you need them issued sequentially, use the "wait" option.</dd>
+  </dl>
+
+  <ul>
+    <li><i>stub</i> — The name of the block to use as a default if the request is empty or returns an error.</li>
+  </ul>
+
+  <dl>
+    <dd>&lt;!--# block name="one" --&gt;&nbsp;&lt;!--# endblock --&gt;</dd>
+
+    <dd>&lt;!--# include virtual="/remote/body.php?argument=value" stub="one" --&gt;</dd>
+  </dl>
+
+  <ul>
+    <li>
+      <i>wait</i> — when set to yes, the rest of the SSI will not be evaluated until the current request is finished. Example:
+      <pre>
+</pre>
+    </li>
+  </ul>
+
+  <dl>
+    <dd>&lt;!--# include virtual="/remote/body.php?argument=value" wait="yes" --&gt;</dd>
+  </dl>
+
+  <ul>
+    <li><code>set</code> - assign a variable.</li>
+
+    <li>var — the variable.</li>
+
+    <li>value — its value. If it contains variable names, these will be evaluated.</li>
+  </ul>
+
+  <h3 class="sigil_not_in_toc">内置变量</h3>
+
+  <p>ngx_http_ssi_module 支持两种内置变量:</p>
+
+  <ul>
+    <li><code>$date_local</code> - 当前的本地时区时间.配置选项"timefmt"控制格式.</li>
+
+    <li><code>$date_gmt</code> - 当前的GMT时间. 配置选项"timefmt"控制格式.</li>
+  </ul>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">参考</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_ssi_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_ssi_module.html">Original Documentation</a></p>
+</body>
+</html>

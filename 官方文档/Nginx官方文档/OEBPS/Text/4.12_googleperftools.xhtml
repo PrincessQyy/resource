@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>GooglePerftools</h2>
+
+  <p>This module enables <a class="external text" href="http://code.google.com/p/google-perftools/" rel="nofollow" title="http://code.google.com/p/google-perftools/">Google Performance Tools</a> profiling for workers. This module appeared in nginx version 0.6.29.</p>
+
+  <p>By default the module is not built, it is necessary to enable its build with</p>
+  <pre>./configure --with-google_perftools_module
+</pre>
+
+  <p>at compilation time.</p>
+
+  <p>Example</p>
+  <pre class="code"><span class="kw35">google_perftools_profiles</span> /path/to/profile;</pre>
+
+  <p>Profiles will be stored as /path/to/profile.&lt;worker_pid&gt;</p>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">google_perftools_profiles</h3>
+
+  <p><b>syntax:</b> <i>google_perftools_profiles path</i></p>
+
+  <p><b>default:</b> <i>none</i></p>
+
+  <p>Directive specifies the base filename of profiles collected by Google Perftools profiler. The workers PIDs will be appended to the specified base filename.</p>
+
+  <p><br /></p>
+</body>
+</html>

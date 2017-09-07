@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpHeaders模块</h2>
+
+  <p>本模板可以设置HTTP报文的头标。</p>
+
+  <p>__示例__</p>
+  <pre>: expires     24h;
+: expires     0;
+: expires     -1;
+: expires     epoch;
+: add_header  Cache-Control  private;
+</pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <ul>
+    <li>[#add_header add_header]</li>
+
+    <li>[#expires expires]</li>
+  </ul>
+
+  <h3 class="sigil_not_in_toc">增加头标</h3>
+
+  <p><b>语法：</b> <i>add_header name value</i></p>
+
+  <p><b>默认值：</b> <i>none</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location</i></p>
+
+  <p>当HTTP应答状态码为 200、204、301、302 或 304 的时候，增加指定的HTTP头标。</p>
+
+  <p>其中头标的值可以使用变量。</p>
+
+  <h3 class="sigil_not_in_toc">expires</h3>
+
+  <p><b>语法：</b> <i>expires [time|epoch|max|off]</i></p>
+
+  <p><b>默认值：</b> <i>expires off</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location</i></p>
+
+  <p>使用本指令可以控制HTTP应答中的“Expires”和“Cache-Control”的头标，（起到控制页面缓存的作用）。</p>
+
+  <p>可以在time值中使用正数或负数。“Expires”头标的值将通过当前系统时间加上您设定的 time 值来获得。</p>
+
+  <p><code>epoch</code> 指定“Expires”的值为 1 January, 1970, 00:00:01 GMT。</p>
+
+  <p><code>max</code> 指定“Expires”的值为 31 December 2037 23:59:59 GMT，“Cache-Control”的值为10年。</p>
+
+  <p><code>-1</code> 指定“Expires”的值为 服务器当前时间 -1s,即永远过期</p>
+
+  <p>“Cache-Control”头标的值由您指定的时间来决定：</p>
+
+  <ul>
+    <li>负数：<code>Cache-Control: no-cache</code></li>
+
+    <li>正数或零：<code>Cache-Control: max-age = #</code>, # 为您指定时间的秒数。</li>
+  </ul>
+
+  <p>"off" 表示不修改“Expires”和“Cache-Control”的值</p>
+
+  <h3 class="sigil_not_in_toc">References</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_headers_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_headers_module.html">原始文档</a></p>
+</body>
+</html>

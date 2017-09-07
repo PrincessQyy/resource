@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpAutoindex模块</h2>
+
+  <p>此模块用于自动生成目录列表.</p>
+
+  <p>ngx_http_autoindex_module只在 ngx_http_index_module模块未找到索引文件时发出请求.</p>
+
+  <p>__配置实例__</p>
+  <pre>location  /  {
+: autoindex  on;
+}
+</pre>
+
+  <h3 class="sigil_not_in_toc">指导</h3>
+
+  <ul>
+    <li>[#autoindex autoindex]</li>
+
+    <li>[#autoindex_exact_size autoindex_exact_size]</li>
+
+    <li>[#autoindex_localtime autoindex_localtime]</li>
+  </ul>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">autoindex</h3>
+
+  <p><b>syntax:</b> <i>autoindex [ on|off ]</i></p>
+
+  <p><b>default:</b> <i>autoindex off</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>激活/关闭自动索引</p>
+
+  <h3 class="sigil_not_in_toc">autoindex_exact_size</h3>
+
+  <p><b>syntax:</b> <i>autoindex_exact_size [ on|off ]</i></p>
+
+  <p><b>default:</b> <i>autoindex_exact_size on</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>设定索引时文件大小的单位(B,KB, MB 或 GB)</p>
+
+  <h3 class="sigil_not_in_toc">autoindex_localtime</h3>
+
+  <p><b>syntax:</b> <i>autoindex_localtime [ on|off ]</i></p>
+
+  <p><b>default:</b> <i>autoindex_localtime off</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>开启以本地时间来显示文件时间的功能。默认为关（GMT时间）</p>
+
+  <h3 class="sigil_not_in_toc">参考</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_autoindex_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_autoindex_module.html">Original Documentation</a></p>
+</body>
+</html>

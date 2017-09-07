@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>Memcached</h2>
+
+  <p>你可以利用本模块来进行简单的缓存以提高系统效率。本模块计划在未来进行扩展。</p>
+
+  <p>__配置示例__</p>
+  <pre>
+server {
+: location / {
+: set  $memcached_key  $uri;
+: memcached_pass   name:11211;
+: default_type     text/html;
+: error_page       404 = /fallback;
+: }
+
+: location = /fallback {
+: proxy_pass       backend;
+: }
+}
+</pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <ul>
+    <li>[#memcached_pass memcached_pass]</li>
+
+    <li>[#memcached_connect_timeout memcached_connect_timeout]</li>
+
+    <li>[#memcached_send_timeout memcached_send_timeout]</li>
+
+    <li>[#memcached_read_timeout memcached_read_timeout]</li>
+
+    <li>[#memcached_buffer_size memcached_buffer_size]</li>
+
+    <li>[#memcached_next_upstream memcached_next_upstream]</li>
+  </ul>
+
+  <h3 class="sigil_not_in_toc">变量</h3>
+
+  <ul>
+    <li>$memcached_key</li>
+  </ul>
+
+  <h3 class="sigil_not_in_toc">memcached_pass</h3>
+
+  <p><b>语法：</b> <i>memcached_pass [ name:port ]</i></p>
+
+  <p><b>默认值：</b> <i>none</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location</i></p>
+
+  <p>The backend should set the data in memcached. The memcached key is "/uri?args".</p>
+
+  <p>Since 0.5.9 the memcached key is now in <code>$memcached_key</code>.</p>
+
+  <h3 class="sigil_not_in_toc">memcached_connect_timeout</h3>
+
+  <p><b>语法：</b> <i>memcached_connect_timeout [ time ]</i></p>
+
+  <p><b>默认值：</b> <i>60000</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location</i></p>
+
+  <p>The timeout for connecting to memcached, in milliseconds.</p>
+
+  <h3 class="sigil_not_in_toc">memcached_read_timeout</h3>
+
+  <p><b>语法：</b> <i>memcached_read_timeout [ time ]</i></p>
+
+  <p><b>默认值：</b> <i>60000</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location</i></p>
+
+  <p>The timeout for reading from memcached, in milliseconds.</p>
+
+  <h3 class="sigil_not_in_toc">memcached_send_timeout</h3>
+
+  <p><b>语法：</b> <i>memcached_send_timeout [ time ]</i></p>
+
+  <p><b>默认值：</b> <i>60000</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location</i></p>
+
+  <p>The timeout for sending to memcached, in milliseconds.</p>
+
+  <h3 class="sigil_not_in_toc">memcached_buffer_size</h3>
+
+  <p><b>语法：</b> <i>memcached_buffer_size [ size ]</i></p>
+
+  <p><b>默认值：</b> see <i>getpagesize(2)</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location</i></p>
+
+  <p>The recv/send buffer size, in bytes.</p>
+
+  <h3 class="sigil_not_in_toc">memcached_next_upstream</h3>
+
+  <p><b>语法：</b> <i>memcached_next_upstream [ error | timeout | invalid_response | not_found | off ]</i></p>
+
+  <p><b>默认值：</b> <i>error timeout</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location</i></p>
+
+  <p>Which failure conditions should cause the request to be forwarded to another upstream server? Applies only when the value in memcached_pass is an upstream with two or more servers.</p>
+</body>
+</html>

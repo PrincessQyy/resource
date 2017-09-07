@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>map</h2>
+
+  <p>This module allows you to classify, or map a set of values into a different set of values and store the result in a variable.</p>
+
+  <p>Example:</p>
+  <pre class="code"><span class="kw19">map</span>  <span class="re0">$http_host</span>  <span class="re0">$name</span>  <span class="br0">{</span>
+  hostnames;
+&nbsp;
+
+  default          <span class="nu0">0</span>;
+&nbsp;
+  example.com      <span class="nu0">1</span>;
+  *.example.com    <span class="nu0">1</span>;
+  test.com         <span class="nu0">2</span>;
+  *.test.com       <span class="nu0">2</span>;
+  .site.com        <span class="nu0">3</span>;
+
+<span class="br0">}</span></pre>
+
+  <p><br />
+  One use for this would be to use a mapping in place of writing lots of server/location directives or redirects:</p>
+  <pre class="code"><span class="kw19">map</span> <span class="re0">$uri</span> <span class="re0">$new</span> <span class="br0">{</span>
+  default        <span class="kw3">http</span>://www.domain.com/home/;
+&nbsp;
+  /aa            <span class="kw3">http</span>://aa.domain.com/;
+  /bb            <span class="kw3">http</span>://bb.domain.com/;
+  /john          <span class="kw3">http</span>://my.domain.com/users/john/;
+
+<span class="br0">}</span>
+&nbsp;
+<span class="kw3">server</span> <span class="br0">{</span>
+  <span class="kw3">server_name</span>   www.domain.com;
+  <span class="kw22">rewrite</span>  ^    <span class="re0">$new</span>   redirect;
+<span class="br0">}</span></pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">map</h3>
+
+  <p><b>syntax:</b> <i>map $var1 $var2 { ... }</i></p>
+
+  <p><b>default:</b> <i>none</i></p>
+
+  <p><b>context:</b> <i>http</i></p>
+
+  <p><b>map</b> defines the mapping table which will be used to set a variable. There are three special parameters:</p>
+
+  <ul>
+    <li>default — defines the value to be used where no match is found.</li>
+
+    <li>hostnames — it allows for an easier matching of values like host names, names with a starting dot may match exact host names and host names ending with the value, for example:</li>
+  </ul>
+  <pre>*.example.com  1; 
+</pre>
+
+  <p>Instead of two entries</p>
+  <pre>example.com    1;
+*.example.com  1;
+</pre>
+
+  <p>we can use only one</p>
+  <pre>
+.example.com   1;
+</pre>
+
+  <ul>
+    <li>include — include values from a file. Multiple includes may be used.</li>
+  </ul>
+
+  <h3 class="sigil_not_in_toc">map_hash_max_size</h3>
+
+  <p><b>syntax:</b> <i>map_hash_max_size number</i></p>
+
+  <p><b>default:</b> <i>map_hash_max_size 2048</i></p>
+
+  <p><b>context:</b> <i>http</i></p>
+
+  <p>The directive sets the maximum size of a hash table to hold the variable map. For more details see the descriptions of hash settings <a href="../general/optimizations.html" title="NginxOptimizations">Optimization section</a> .</p>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">map_hash_bucket_size</h3>
+
+  <p><b>syntax:</b> <i>map_hash_bucket_size n</i></p>
+
+  <p><b>default:</b> <i>map_hash_bucket_size 32/64/128</i></p>
+
+  <p><b>context:</b> <i>http</i></p>
+
+  <p>The directive sets the maximum size in a hash table to map variables. The default value depends on the size of the cache line processor. More see in the descriptions of hash settings in the <a href="../general/optimizations.html" title="NginxOptimizations">Optimization section</a> .</p>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">References</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_map_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_map_module.html">Original Documentation</a></p>
+</body>
+</html>

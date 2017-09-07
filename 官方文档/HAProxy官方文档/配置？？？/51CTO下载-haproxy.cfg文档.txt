@@ -1,0 +1,57 @@
+-==--=-=-=-=-=-=-=-=-=-=-==-=-=--=-=-=-=
+必须是纯净版服务器    双网卡
+
+
+
+先安装   yum install haproxy -y
+
+
+
+把下面文档复制到   /etc/haproxy/haproxy.cfg
+
+global
+
+    log         127.0.0.1 local2
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+    stats socket /var/lib/haproxy/stats
+
+defaults
+
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option http-server-close
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 3000
+
+listen status :8080
+      stats uri /admin?stats
+      stats auth admin:admin
+      stats hide-version
+      stats refresh 5s
+
+listen webs :80
+       balance roundrobin
+       server web1 192.168.100.10 check maxconn 2000 weight 3 inter 2000 rise 2 fall 3
+       server web2 192.168.100.20 check maxconn 2000 weight 3 inter 2000 rise 2 fall 3
+       server web3 192.168.100.40 check backup
+
+
+service haproxy restart
+
+去xp  验证   httpd://202.106.195.1:8080/admin?stats

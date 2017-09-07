@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpGzipStatic</h2>
+
+  <p>Before serving a file from disk to a gzip-enabled client, this module will look for a precompressed file in the same location that ends in ".gz". The purpose is to avoid compressing the same file each time it is requested.</p>
+
+  <p>在开始压缩创建硬盘上的文件之前，本模块将查找同目录下同名的.gz压缩文件，以避免同一文件再次压缩。</p>
+
+  <p>ngx_http_gzip_static_module was introduced in nginx 0.6.24. You must enable support at compile time:</p>
+
+  <p>nginx 0.6.24开始加入ngx_http_gzip_static_module . 编译时加上:</p>
+  <pre>./configure --with-http_gzip_static_module
+
+</pre>
+
+  <p>例如：</p>
+  <pre class="code"><span class="kw28">gzip_static</span> on;
+&nbsp;
+<span class="kw13">gzip_http_version</span>   <span class="nu0">1.1</span>;
+<span class="kw13">gzip_proxied</span>        expired no-cache no-store private auth;
+<span class="kw13">gzip_disable</span>        <span class="st0">"MSIE [1-6]<span class="es0">\.</span>"</span>;
+
+<span class="kw13">gzip_vary</span>           on;</pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">gzip_static</h3>
+
+  <p><b>syntax:</b> <i>gzip_static on|off</i></p>
+
+  <p><b>default:</b> <i>gzip_static off</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Enables the module. You should ensure that the timestamps of the compressed and uncompressed files match.</p>
+
+  <p>启动模块。您应该确保压缩和解压文件的时间戳匹配。</p>
+
+  <h3 class="sigil_not_in_toc">gzip_http_version</h3>
+
+  <p>See <a href="../standard/httpgzip.html" title="NginxHttpGzipModule">NginxHttpGzipModule</a></p>
+
+  <h3 class="sigil_not_in_toc">gzip_proxied</h3>
+
+  <p>See <a href="../standard/httpgzip.html" title="NginxHttpGzipModule">NginxHttpGzipModule</a></p>
+
+  <h3 class="sigil_not_in_toc">gzip_disable</h3>
+
+  <p>See <a href="../standard/httpgzip.html" title="NginxHttpGzipModule">NginxHttpGzipModule</a></p>
+
+  <h3 class="sigil_not_in_toc">gzip_vary</h3>
+
+  <p>See <a href="../standard/httpgzip.html" title="NginxHttpGzipModule">NginxHttpGzipModule</a></p>
+
+  <p><br /></p>
+</body>
+</html>

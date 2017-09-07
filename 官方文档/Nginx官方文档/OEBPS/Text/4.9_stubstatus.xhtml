@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>StubStatus模块</h2>
+
+  <p>这个模块能够获取Nginx自上次启动以来的工作状态</p>
+
+  <p>此模块非核心模块，需要在编译的时候手动添加编译参数 <code>--with-http_stub_status_module</code></p>
+
+  <p>__配置说明__</p>
+  <pre>location /nginx_status {
+: # copied from http://blog.kovyrin.net/2006/04/29/monitoring-nginx-with-rrdtool/
+: stub_status on;
+: access_log   off;
+: allow SOME.IP.ADD.RESS;
+: deny all;
+}
+</pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <ul>
+    <li>[#stub_status stub_status]</li>
+  </ul>
+
+  <h3 class="sigil_not_in_toc">stub_status</h3>
+
+  <p><b>语法:</b> <i>stub_status</i> on</p>
+
+  <p><b>默认值:</b> <i>None</i></p>
+
+  <p><b>作用域:</b> <i>location</i></p>
+
+  <p>创建一个 location 区域启用 stub_status</p>
+
+  <p>"stub status" 模块返回的状态信息跟 <a class="external text" href="http://www.mathopd.org/" rel="nofollow" title="http://www.mathopd.org/">mathopd's</a> 的状态信息很相似. 返回的状态信息如下：</p>
+  <pre>Active connections: 291
+server accepts handled requests
+: 16630948 16630948 31070465
+Reading: 6 Writing: 179 Waiting: 106
+</pre>
+
+  <p><code>active connections</code> -- 对后端发起的活动连接数</p>
+
+  <p><code>server accepts handled requests</code> -- nginx 总共处理了 16630948 个连接, 成功创建 16630948 次握手 (证明中间没有失败的), 总共处理了 31070465 个请求 (平均每次握手处理了 1.8个数据请求)</p>
+
+  <p><code>reading</code> -- nginx 读取到客户端的Header信息数</p>
+
+  <p><code>writing</code> -- nginx 返回给客户端的Header信息数</p>
+
+  <p><code>waiting</code> -- 开启 keep-alive 的情况下，这个值等于 <code>active - (reading + writing)</code>，意思就是Nginx说已经处理完正在等候下一次请求指令的驻留连接</p>
+
+  <h3 class="sigil_not_in_toc">Examples</h3>
+
+  <p><a class="external free" href="http://blog.kovyrin.net/2006/04/29/monitoring-nginx-with-rrdtool/" rel="nofollow" title="http://blog.kovyrin.net/2006/04/29/monitoring-nginx-with-rrdtool/">http://blog.kovyrin.net/2006/04/29/monitoring-nginx-with-rrdtool/</a><br />
+  <a class="external free" href="http://dev.2xlp.com/svn/nginx_config/trunk/conf/_rrd/__README__.txt" rel="nofollow" title="http://dev.2xlp.com/svn/nginx_config/trunk/conf/_rrd/__README__.txt">http://dev.2xlp.com/svn/nginx_config/trunk/conf/_rrd/__README__.txt</a></p>
+</body>
+</html>

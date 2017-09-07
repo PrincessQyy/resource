@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpIndex模块</h2>
+
+  <p>这个模块提供一个简单方法来实现在轮询和客户端IP之间的后端服务器负荷平衡。</p>
+
+  <p>配置范例：</p>
+  <pre>upstream backend  {
+  server backend1.example.com weight=5;
+  server backend2.example.com:8080;
+  server unix:/tmp/backend3;
+}
+ 
+server {
+  location / {
+    proxy_pass  http://backend;
+  }
+}
+</pre>
+
+  <p>配置指导</p>
+
+  <h3 class="sigil_not_in_toc">ip_hash</h3>
+
+  <p>syntax: ip_hash</p>
+
+  <p>default: none</p>
+
+  <p>context: upstream</p>
+
+  <p>This directive causes requests to be distributed between upstreams based on the IP-address of the client. The key for the hash is the class-C network address of the client. This method guarantees that the client request will always be transferred to the same server. But if this server is considered inoperative, then the request of this client will be transferred to another server. This gives a high probability clients will always connect to the same server.</p>
+
+  <p>范例：</p>
+  <pre>upstream backend {
+  ip_hash;
+  server   backend1.example.com;
+  server   backend2.example.com;
+  server   backend3.example.com  down;
+  server   backend4.example.com;
+}
+</pre>
+
+  <h3 class="sigil_not_in_toc">server</h3>
+
+  <p>syntax: server name [parameters]</p>
+
+  <p>default: none</p>
+
+  <p>context: upstream</p>
+</body>
+</html>

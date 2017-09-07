@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpXSLT</h2>
+
+  <p>This module is a filter which converts an XML response with the aid of one or more XSLT templates.</p>
+
+  <p>This module was introduced in 0.7.8 and needs to be enabled via</p>
+  <pre>./configure --with-http_xslt_module</pre>
+
+  <p>Example:</p>
+  <pre class="code"><span class="kw3">location</span> / <span class="br0">{</span>
+  xml_entities       /site/dtd/entities.dtd;
+  <span class="kw36">xslt_stylesheet</span>    /site/xslt/one.xslt   param=value;
+  <span class="kw36">xslt_stylesheet</span>    /site/xslt/two.xslt;
+
+<span class="br0">}</span></pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">xslt_entities</h3>
+
+  <p><b>syntax:</b> <i>xml_entities &lt;path&gt;</i></p>
+
+  <p><b>default:</b> <i>no</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Specifies the DTD file which describes symbolic elements (xml entities). This file is compiled at the stage of configuration. For technical reasons it's not possible to specify entities in the XML being processed, therefore they are ignored, but this specially assigned file is used instead. In this file it is not necessary to describe structure of processed XML, it is sufficient only to declare necessary symbolic elements, for example:</p>
+  <pre>  &lt;! ENTITY of nbsp “&nbsp; “&gt;
+</pre>
+
+  <h3 class="sigil_not_in_toc">xslt_stylesheet</h3>
+
+  <p><b>syntax:</b> <i>xslt_stylesheet template [parameter[[ parameter...</i> ]] <b>default:</b> <i>no</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Specifies the XSLT template with its parameters. Template is compiled at the stage of configuration. The parameters are assigned as shown:</p>
+  <pre>  param=value
+
+</pre>
+
+  <p>You can specify parameters either one per line, or separate multiple parameters with colon (“: ”) If the parameter itself contains the character “:”, escape it as “%3A”. Furthermore, libxslt requires that string parameters should be quoted by the single or dual quotation marks if they contain non-alphanumeric characters, for example:</p>
+  <pre>  param1='http%3A//www.example.com': param2=value2
+</pre>
+
+  <p>It's possible to use variables as parameters, for example, the entire line of the parameters can be substituted with one variable:</p>
+  <pre class="code">  <span class="kw3">location</span> / <span class="br0">{</span>
+    <span class="kw36">xslt_stylesheet</span> /site/xslt/one.xslt
+    <span class="re0">$arg_xslt_params</span>
+
+    param1=<span class="st0">'$value1'</span>: param2=value2
+    param3=value3;
+  <span class="br0">}</span></pre>
+
+  <p>It is possible to specify several templates, in which case they would be chained together in the order of their declaration.</p>
+
+  <h3 class="sigil_not_in_toc">xslt_types</h3>
+
+  <p><b>syntax:</b> <i>xslt_types mime-type [mime-type...]</i></p>
+
+  <p><b>default:</b> <i>xslt_types text/xml</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Permit processing responses with specified MIME-types in addition to “text/xml”. If XSLT output mode is HTML, then the response MIME-type changes to “text/HTML”.</p>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>Addition模块</h2>
+
+  <p>This module adds responses of other locations before and after the current location's response.</p>
+
+  <p>It is implemented as an output filter, the contents of the main request and subrequests to other locations are not buffered completely and are still sent to the client in a streaming fashion. Because the length of the final response body is unkown while sending the HTTP headers, the HTTP chunked encoding is always used here.</p>
+
+  <h3 class="sigil_not_in_toc">Installation</h3>
+
+  <p>By default the module is not built, it is necessary to enable its build with</p>
+  <pre>./configure --with-http_addition_module
+</pre>
+
+  <p>at compilation time.</p>
+
+  <p>Example:</p>
+  <pre class="code"><span class="kw3">location</span> / <span class="br0">{</span>
+  <span class="kw25">add_before_body</span>   /before_action;
+  <span class="kw25">add_after_body</span>    /after_action;
+
+<span class="br0">}</span></pre>
+
+  <h3 class="sigil_not_in_toc">Limitations</h3>
+
+  <p>Note that as of 0.8.17 no contents will be added if the current location is served as a subrequest itself. Consider the following example:</p>
+  <pre class="code"><span class="kw3">location</span> /foo <span class="br0">{</span>
+  <span class="kw25">add_before_body</span> /bar;
+<span class="br0">}</span>
+&nbsp;
+
+<span class="kw3">location</span> /bar <span class="br0">{</span>
+ <span class="kw25">add_before_body</span>  /baz;
+<span class="br0">}</span></pre>
+
+  <p>Then accessing <i>/foo</i> won't get <i>/baz</i> inserted before the contents of the subrequest <i>/bar</i>.</p>
+
+  <p>Also note that at this time, only strings can be used in before/after body locations, not variables. So</p>
+  <pre class="code"><span class="kw3">location</span> / <span class="br0">{</span>
+  <span class="kw22">set</span> <span class="re0">$before_action</span> /before_action;
+  <span class="kw25">add_before_body</span> <span class="re0">$before_action</span>;
+<span class="br0">}</span></pre>
+
+  <p>will not work as expected (although the configuration file will still load properly).</p>
+
+  <h3 class="sigil_not_in_toc">Directives</h3>
+
+  <h3 class="sigil_not_in_toc">add_before_body</h3>
+
+  <p><b>syntax:</b> <i>add_before_body uri</i></p>
+
+  <p><b>default:</b> <i>no</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive adds content of uri before the response body, issued as a result of the work of the assigned subrequest.</p>
+
+  <h3 class="sigil_not_in_toc">add_after_body</h3>
+
+  <p><b>syntax:</b> <i>add_after_body uri</i></p>
+
+  <p><b>default:</b> <i>no</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive adds content of uri after the response body, issued as a result of the work of the assigned subrequest.</p>
+
+  <h3 class="sigil_not_in_toc">addition_types</h3>
+
+  <p><b>syntax:</b> <i>addition_types mime-type [mime-type ...]</i></p>
+
+  <p><b>default:</b> <i>text/html</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive (since 0.7.9) allows you to add text only to locations of the specified MIME-types (defaults to <i>"text/html"</i>).</p>
+
+  <p>(Before 0.8.17, this directive was mispelled as "addtion_types" in the source. This bug has been fixed in 0.8.17.)</p>
+
+  <h3 class="sigil_not_in_toc">References</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_addition_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_addition_module.html">Original Documentation</a></p>
+</body>
+</html>

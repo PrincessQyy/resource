@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpDav模块</h2>
+
+  <p>这个模块可以为Http webDAV 增加 PUT, DELETE, MKCOL, COPY 和 MOVE 等方法。</p>
+
+  <p>这个模块在默认编译的情况下不是被包含的，你需要在编译时指定如下参数：</p>
+  <pre>./configure --with-http_dav_module
+</pre>
+
+  <p>配置范例：</p>
+  <pre>location / {
+  root     /data/www;
+  client_body_temp_path  /data/client_temp;
+ 
+  dav_methods  PUT DELETE MKCOL COPY MOVE;
+ 
+  create_full_put_path   on;
+  dav_access             group:rw  all:r;
+ 
+  limit_except  GET {
+    allow  192.168.1.0/32;
+    deny   all;
+  }
+}
+</pre>
+
+  <p>配置指导</p>
+
+  <h3 class="sigil_not_in_toc">dav_access</h3>
+
+  <p>syntax: dav_access user:permissions [users:permissions] ...</p>
+
+  <p>default: dav_access user:rw</p>
+
+  <p>context: http, server, location</p>
+
+  <p>这个指令是赋予某个目录或文件以访问权，如：</p>
+  <pre>dav_access user:rw group:rw all:r;
+</pre>
+
+  <p>如果给一个用户组或所有用户任何权限，user 这个参数就没有必要设置了，如：</p>
+  <pre>dav_access group:rw all:r;
+
+</pre>
+
+  <h3 class="sigil_not_in_toc">dav_methods</h3>
+
+  <p>syntax: dav_methods [off|put|delete|mkcol|copy|move] ...</p>
+
+  <p>default: dav_methods off</p>
+
+  <p>context: http, server, location</p>
+  <pre>这个指令用于于指定HTTP和WebDAV的方法，设置它为off 时其所有的方法都将无效（忽视你已经设置的方法）。
+
+Put 方法的目标文件必须是和Nginx 的临时文件夹client_body_temp_path 在同一个分区里。
+
+当使用Put 方法创建一个文件时，有可能会通过设定date header 修改文件创建日期。
+</pre>
+
+  <h3 class="sigil_not_in_toc">create_full_put_path</h3>
+
+  <p>syntax: create_full_put_path on|off</p>
+
+  <p>default: create_full_put_path off</p>
+
+  <p>context: http, server, location</p>
+  <pre>默认情况下，Put 方法只能在已存在的目录里创建文件。当然了Nginx 必须得有这个目录的修改和写入权限。
+</pre>
+</body>
+</html>

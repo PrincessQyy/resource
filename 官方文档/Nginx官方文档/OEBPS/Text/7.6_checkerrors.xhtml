@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HWLoadbalancerCheckErrors</h2>
+
+  <p>Some Hardware Load-balancers such Cisco's CSS and BigIP Products test the readiness of the backend Machines with <b>SYN-ACK-RST</b>.</p>
+
+  <p>This behavior causes a 400 error in nginx.</p>
+
+  <p>With the <a href="../standard/geo.html" title="NginxHttpGeoModule">GEO Module</a> and the <b>if-Statement</b> you can omit these entries:</p>
+  <pre class="code"><span class="kw3">http</span> <span class="br0">{</span>
+
+  <span class="kw12">geo</span>  <span class="re0">$lb</span>  <span class="br0">{</span>
+    default      <span class="nu0">0</span>;
+    <span class="nu0">10.1</span><span class="nu0">.1</span><span class="nu0">.1</span>/<span class="nu0">32</span>  <span class="nu0">1</span>;   <span class="co1"># LB IPs</span>
+
+    <span class="nu0">10.1</span><span class="nu0">.1</span><span class="nu0">.2</span>/<span class="nu0">32</span>  <span class="nu0">1</span>;
+  <span class="br0">}</span>
+&nbsp;
+  <span class="co1"># ...</span>
+&nbsp;
+  <span class="kw3">server</span> <span class="br0">{</span>
+
+    <span class="co1"># ...</span>
+    <span class="kw18">access_log</span>   /path/to/log;
+    <span class="kw3">error_page</span> <span class="nu0">400</span> /<span class="nu0">400</span>;
+&nbsp;
+    <span class="kw3">location</span> = /<span class="nu0">400</span> <span class="br0">{</span>
+
+      <span class="kw22">if</span> <span class="br0">(</span><span class="re0">$lb</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw18">access_log</span>  off;
+      <span class="br0">}</span>
+      <span class="kw22">return</span> <span class="nu0">400</span>;
+    <span class="br0">}</span>
+
+  <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</body>
+</html>

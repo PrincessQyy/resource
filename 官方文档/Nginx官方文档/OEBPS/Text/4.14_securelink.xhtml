@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpSecureLink</h2>
+
+  <p>This module computes and checks request URLs for a required security token. This module is not compiled by default and must be specified using the<br />
+  这个模块计算和检测URL请求中必须的安全标识<br />
+  这个模块没有默认编译，在编译Nginx时，必须使用明确的配置参数</p>
+  <pre>--with-http_secure_link_module
+</pre>
+
+  <p>argument to configure when compiling Nginx. Note that this module is only supported in nginx version 0.7.18 and higher.<br />
+  来说明配置.这个模块在Nginx 0.7.18及以上版本中被支持.</p>
+
+  <h3 class="sigil_not_in_toc">Example usage:</h3>
+  <pre class="code"><span class="kw3">location</span> /prefix/ <span class="br0">{</span>
+    secure_link_secret   secret_word;
+
+&nbsp;
+    <span class="kw22">if</span> <span class="br0">(</span><span class="re0">$secure_link</span> = <span class="st0">""</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw22">return</span> <span class="nu0">403</span>;
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <p><b>syntax:</b> <i>secure_link_secret secret_word</i></p>
+
+  <p><b>default:</b> <i>none</i></p>
+
+  <p><b>context:</b> <i>location</i></p>
+
+  <p>The directive specifies a secret word to verify requests. The full URL for a protected links follows this form:<br />
+  这个指令明确一个安全关键字来审核请求。完整的被保护的URL如下表：</p>
+
+  <p>/<b>prefix</b>/<i>hash</i>/<b>reference</b></p>
+
+  <p><i>hash</i> is computed as as 使用md5('参考','安全密码')函数计算</p>
+  <pre>md5 (reference, secret_word);
+</pre>
+
+  <p><b>prefix</b> is the scope of the location block, and must not be '/'. secure_link can only be used in non-root paths.<br />
+  前缀是定位块的范围，绝对不能使用'/'。安全连接只能被用在非根目录路径。</p>
+
+  <h3 class="sigil_not_in_toc">变量</h3>
+
+  <h3 class="sigil_not_in_toc">$secure_link</h3>
+
+  <p>Automatically set to the reference component of the URL, isolated from the prefix and hash. If the hash is incorrect, an empty string is returned instead.<br />
+  自动设置模块到URL的关联,分开前缀和HASH。如果HASH不正确，将返回空字符串。</p>
+</body>
+</html>

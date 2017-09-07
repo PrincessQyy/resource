@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpReferer模块</h2>
+
+  <h3 class="sigil_not_in_toc">摘要</h3>
+
+  <p>This module makes it possible to block access to the site with the incorrect values of line "Referer" in the request header.</p>
+
+  <p>Keep in mind that it is easy to spoof this header; therefore, the purpose of using of this module consists not in 100% blocking of these requests, but in the blocking of the mass flow of requests, made from typical browsers. Also, consider that the typical browser does not always provide a "Referer" header, even for correct requests.</p>
+
+  <p>Example</p>
+  <pre class="code"><span class="kw3">location</span> /photos/ <span class="br0">{</span>
+  <span class="kw16">valid_referers</span> none blocked www.mydomain.com mydomain.com;
+&nbsp;
+  <span class="kw22">if</span> <span class="br0">(</span><span class="re0">$invalid_referer</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw22">return</span>   <span class="nu0">403</span>;
+  <span class="br0">}</span>
+
+<span class="br0">}</span></pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">valid_referers</h3>
+
+  <p><b>syntax:</b> <i>valid_referers [none|blocked|server_names] ...</i></p>
+
+  <p><b>default:</b> <i>none</i></p>
+
+  <p><b>context:</b> <i>server, location</i></p>
+
+  <p>This directive assigns a value of 0 or 1 to the variable <code>$invalid_referer</code> based on the contents of the <code>referer</code> header.</p>
+
+  <p>You can use this to help reduce deep-linking from outside sites. If <code>Referer</code> header is not accounted for in the list of <code>valid_referers</code>, then <code>$invalid_referer</code> will be set to 1 (see example above).</p>
+
+  <p>The parameters can be as follows:</p>
+
+  <ul>
+    <li><code>none</code> means the absence of "Referer" header.</li>
+
+    <li><code>blocked</code> means masked <code>Referer</code> header by firewall, for example, "Referer: XXXXXXX".</li>
+
+    <li>server_names is a list of one or more servers. From version 0.5.33 onwards, * wildcards can be used in the server names.</li>
+  </ul>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">References</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_referer_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_referer_module.html">Original Documentation</a></p>
+</body>
+</html>

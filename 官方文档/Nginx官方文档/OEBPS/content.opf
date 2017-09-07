@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:3c18aa6e-a355-4263-9f2d-6623f6fb5803</dc:identifier>
+    <dc:title>Nginx 中文官方文档 飞龙整理 20150411</dc:title>
+    <dc:creator opf:role="aut">www.nginx.cn</dc:creator>
+    <dc:language>zh-CN</dc:language>
+    <dc:date opf:event="modification">2015-04-11</dc:date>
+    <meta content="0.8.1" name="Sigil version" />
+  </metadata>
+  <manifest>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
+    <item href="Text/0.xhtml" id="x0.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.xhtml" id="x1.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.1_overview.xhtml" id="x1.1_overview.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.2_nginxchswhyuseit.xhtml" id="x1.2_nginxchswhyuseit.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.3_install.xhtml" id="x1.3_install.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.4_nginxchscommandline.xhtml" id="x1.4_nginxchscommandline.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.5_notation.xhtml" id="x1.5_notation.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.6_optimizations.xhtml" id="x1.6_optimizations.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.7_faq.xhtml" id="x1.7_faq.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/1.8_debug.xhtml" id="x1.8_debug.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/2.xhtml" id="x2.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/2.1_mainmodule.xhtml" id="x2.1_mainmodule.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/2.2_events.xhtml" id="x2.2_events.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.xhtml" id="x3.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.1_httpcore.xhtml" id="x3.1_httpcore.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.2_httpupstream.xhtml" id="x3.2_httpupstream.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.3_httpaccess.xhtml" id="x3.3_httpaccess.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.4_httpauthbasic.xhtml" id="x3.4_httpauthbasic.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.5_httpautoindex.xhtml" id="x3.5_httpautoindex.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.6_browser.xhtml" id="x3.6_browser.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.7_charset.xhtml" id="x3.7_charset.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.8_httpemptygif.xhtml" id="x3.8_httpemptygif.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.9_httpfcgi.xhtml" id="x3.9_httpfcgi.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.10_geo.xhtml" id="x3.10_geo.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.11_httpgzip.xhtml" id="x3.11_httpgzip.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.12_httpheaders.xhtml" id="x3.12_httpheaders.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.13_httpindex.xhtml" id="x3.13_httpindex.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.14_httpreferer.xhtml" id="x3.14_httpreferer.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.15_httplimitzone.xhtml" id="x3.15_httplimitzone.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.16_httplimitrequest.xhtml" id="x3.16_httplimitrequest.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.17_httplog.xhtml" id="x3.17_httplog.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.18_map.xhtml" id="x3.18_map.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.19_memcached.xhtml" id="x3.19_memcached.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.20_httpproxy.xhtml" id="x3.20_httpproxy.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.21_rewrite.xhtml" id="x3.21_rewrite.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.22_httpssi.xhtml" id="x3.22_httpssi.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/3.23_userid.xhtml" id="x3.23_userid.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.xhtml" id="x4.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.1_addition.xhtml" id="x4.1_addition.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.2_embeddedperl.xhtml" id="x4.2_embeddedperl.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.3_flv.xhtml" id="x4.3_flv.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.4_gzipstatic.xhtml" id="x4.4_gzipstatic.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.5_randomindex.xhtml" id="x4.5_randomindex.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.6_geoip.xhtml" id="x4.6_geoip.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.7_realip.xhtml" id="x4.7_realip.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.8_ssl.xhtml" id="x4.8_ssl.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.9_stubstatus.xhtml" id="x4.9_stubstatus.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.10_sub.xhtml" id="x4.10_sub.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.11_httpdav.xhtml" id="x4.11_httpdav.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.12_googleperftools.xhtml" id="x4.12_googleperftools.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.13_xslt.xhtml" id="x4.13_xslt.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.14_securelink.xhtml" id="x4.14_securelink.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/4.15_imagefilter.xhtml" id="x4.15_imagefilter.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/5.xhtml" id="x5.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/5.1_mailcore.xhtml" id="x5.1_mailcore.xhtml" media-type="application/xhtml+xml" />
+    <item href="Styles/code.css" id="code.css" media-type="text/css" />
+    <item href="Text/5.2_mailauth.xhtml" id="x5.2_mailauth.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/5.3_mailproxy.xhtml" id="x5.3_mailproxy.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/5.4_mailssl.xhtml" id="x5.4_mailssl.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/6.xhtml" id="x6.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/6.1_nginx_windows.xhtml" id="x6.1_nginx_windows.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/6.2_nginx_freebsd.xhtml" id="x6.2_nginx_freebsd.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/6.3_nginx_ubuntu.xhtml" id="x6.3_nginx_ubuntu.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/6.4_nginx_fedora.xhtml" id="x6.4_nginx_fedora.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/6.5_nginx_php_fpm.xhtml" id="x6.5_nginx_php_fpm.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/7.xhtml" id="x7.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/7.1_fullexample.xhtml" id="x7.1_fullexample.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/7.2_fullexample2.xhtml" id="x7.2_fullexample2.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/7.3_virtualhost.xhtml" id="x7.3_virtualhost.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/7.4_loadbalance.xhtml" id="x7.4_loadbalance.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/7.5_doorchain.xhtml" id="x7.5_doorchain.xhtml" media-type="application/xhtml+xml" />
+    <item href="Text/7.6_checkerrors.xhtml" id="x7.6_checkerrors.xhtml" media-type="application/xhtml+xml" />
+    <item href="Styles/Style.css" id="Style.css" media-type="text/css" />
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="x0.xhtml" />
+    <itemref idref="x1.xhtml" />
+    <itemref idref="x1.1_overview.xhtml" />
+    <itemref idref="x1.2_nginxchswhyuseit.xhtml" />
+    <itemref idref="x1.3_install.xhtml" />
+    <itemref idref="x1.4_nginxchscommandline.xhtml" />
+    <itemref idref="x1.5_notation.xhtml" />
+    <itemref idref="x1.6_optimizations.xhtml" />
+    <itemref idref="x1.7_faq.xhtml" />
+    <itemref idref="x1.8_debug.xhtml" />
+    <itemref idref="x2.xhtml" />
+    <itemref idref="x2.1_mainmodule.xhtml" />
+    <itemref idref="x2.2_events.xhtml" />
+    <itemref idref="x3.xhtml" />
+    <itemref idref="x3.1_httpcore.xhtml" />
+    <itemref idref="x3.2_httpupstream.xhtml" />
+    <itemref idref="x3.3_httpaccess.xhtml" />
+    <itemref idref="x3.4_httpauthbasic.xhtml" />
+    <itemref idref="x3.5_httpautoindex.xhtml" />
+    <itemref idref="x3.6_browser.xhtml" />
+    <itemref idref="x3.7_charset.xhtml" />
+    <itemref idref="x3.8_httpemptygif.xhtml" />
+    <itemref idref="x3.9_httpfcgi.xhtml" />
+    <itemref idref="x3.10_geo.xhtml" />
+    <itemref idref="x3.11_httpgzip.xhtml" />
+    <itemref idref="x3.12_httpheaders.xhtml" />
+    <itemref idref="x3.13_httpindex.xhtml" />
+    <itemref idref="x3.14_httpreferer.xhtml" />
+    <itemref idref="x3.15_httplimitzone.xhtml" />
+    <itemref idref="x3.16_httplimitrequest.xhtml" />
+    <itemref idref="x3.17_httplog.xhtml" />
+    <itemref idref="x3.18_map.xhtml" />
+    <itemref idref="x3.19_memcached.xhtml" />
+    <itemref idref="x3.20_httpproxy.xhtml" />
+    <itemref idref="x3.21_rewrite.xhtml" />
+    <itemref idref="x3.22_httpssi.xhtml" />
+    <itemref idref="x3.23_userid.xhtml" />
+    <itemref idref="x4.xhtml" />
+    <itemref idref="x4.1_addition.xhtml" />
+    <itemref idref="x4.2_embeddedperl.xhtml" />
+    <itemref idref="x4.3_flv.xhtml" />
+    <itemref idref="x4.4_gzipstatic.xhtml" />
+    <itemref idref="x4.5_randomindex.xhtml" />
+    <itemref idref="x4.6_geoip.xhtml" />
+    <itemref idref="x4.7_realip.xhtml" />
+    <itemref idref="x4.8_ssl.xhtml" />
+    <itemref idref="x4.9_stubstatus.xhtml" />
+    <itemref idref="x4.10_sub.xhtml" />
+    <itemref idref="x4.11_httpdav.xhtml" />
+    <itemref idref="x4.12_googleperftools.xhtml" />
+    <itemref idref="x4.13_xslt.xhtml" />
+    <itemref idref="x4.14_securelink.xhtml" />
+    <itemref idref="x4.15_imagefilter.xhtml" />
+    <itemref idref="x5.xhtml" />
+    <itemref idref="x5.1_mailcore.xhtml" />
+    <itemref idref="x5.2_mailauth.xhtml" />
+    <itemref idref="x5.3_mailproxy.xhtml" />
+    <itemref idref="x5.4_mailssl.xhtml" />
+    <itemref idref="x6.xhtml" />
+    <itemref idref="x6.1_nginx_windows.xhtml" />
+    <itemref idref="x6.2_nginx_freebsd.xhtml" />
+    <itemref idref="x6.3_nginx_ubuntu.xhtml" />
+    <itemref idref="x6.4_nginx_fedora.xhtml" />
+    <itemref idref="x6.5_nginx_php_fpm.xhtml" />
+    <itemref idref="x7.xhtml" />
+    <itemref idref="x7.1_fullexample.xhtml" />
+    <itemref idref="x7.2_fullexample2.xhtml" />
+    <itemref idref="x7.3_virtualhost.xhtml" />
+    <itemref idref="x7.4_loadbalance.xhtml" />
+    <itemref idref="x7.5_doorchain.xhtml" />
+    <itemref idref="x7.6_checkerrors.xhtml" />
+  </spine>
+  <guide />
+</package>

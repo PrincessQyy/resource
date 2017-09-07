@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN"
+ "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:uid" content="urn:uuid:3c18aa6e-a355-4263-9f2d-6623f6fb5803" />
+    <meta name="dtb:depth" content="2" />
+    <meta name="dtb:totalPageCount" content="0" />
+    <meta name="dtb:maxPageNumber" content="0" />
+  </head>
+  <docTitle>
+    <text>Nginx 中文官方文档 飞龙整理 20150411</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="navPoint-1" playOrder="1">
+      <navLabel>
+        <text>主要文档</text>
+      </navLabel>
+      <content src="Text/1.xhtml" />
+      <navPoint id="navPoint-2" playOrder="2">
+        <navLabel>
+          <text>Nginx功能概述</text>
+        </navLabel>
+        <content src="Text/1.1_overview.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-3" playOrder="3">
+        <navLabel>
+          <text>为什么选择Nginx</text>
+        </navLabel>
+        <content src="Text/1.2_nginxchswhyuseit.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-4" playOrder="4">
+        <navLabel>
+          <text>Nginx安装</text>
+        </navLabel>
+        <content src="Text/1.3_install.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-5" playOrder="5">
+        <navLabel>
+          <text>运行和控制Nginx</text>
+        </navLabel>
+        <content src="Text/1.4_nginxchscommandline.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-6" playOrder="6">
+        <navLabel>
+          <text>配置符号参考</text>
+        </navLabel>
+        <content src="Text/1.5_notation.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-7" playOrder="7">
+        <navLabel>
+          <text>优化 Nginx</text>
+        </navLabel>
+        <content src="Text/1.6_optimizations.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-8" playOrder="8">
+        <navLabel>
+          <text>常见问题(FAQ)</text>
+        </navLabel>
+        <content src="Text/1.7_faq.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-9" playOrder="9">
+        <navLabel>
+          <text>调试 nginx</text>
+        </navLabel>
+        <content src="Text/1.8_debug.xhtml" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-10" playOrder="10">
+      <navLabel>
+        <text>核心模块</text>
+      </navLabel>
+      <content src="Text/2.xhtml" />
+      <navPoint id="navPoint-11" playOrder="11">
+        <navLabel>
+          <text>Nginx主模块</text>
+        </navLabel>
+        <content src="Text/2.1_mainmodule.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-12" playOrder="12">
+        <navLabel>
+          <text>Nginx事件模块</text>
+        </navLabel>
+        <content src="Text/2.2_events.xhtml" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-13" playOrder="13">
+      <navLabel>
+        <text>基本模块</text>
+      </navLabel>
+      <content src="Text/3.xhtml" />
+      <navPoint id="navPoint-14" playOrder="14">
+        <navLabel>
+          <text>http核心模块</text>
+        </navLabel>
+        <content src="Text/3.1_httpcore.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-15" playOrder="15">
+        <navLabel>
+          <text>HttpIndex模块</text>
+        </navLabel>
+        <content src="Text/3.2_httpupstream.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-16" playOrder="16">
+        <navLabel>
+          <text>HttpAccess模块</text>
+        </navLabel>
+        <content src="Text/3.3_httpaccess.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-17" playOrder="17">
+        <navLabel>
+          <text>HttpAuthBasic模块</text>
+        </navLabel>
+        <content src="Text/3.4_httpauthbasic.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-18" playOrder="18">
+        <navLabel>
+          <text>HttpAutoindex模块</text>
+        </navLabel>
+        <content src="Text/3.5_httpautoindex.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-19" playOrder="19">
+        <navLabel>
+          <text>Browser模块</text>
+        </navLabel>
+        <content src="Text/3.6_browser.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-20" playOrder="20">
+        <navLabel>
+          <text>Charset模块</text>
+        </navLabel>
+        <content src="Text/3.7_charset.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-21" playOrder="21">
+        <navLabel>
+          <text>HttpEmptyGif模块</text>
+        </navLabel>
+        <content src="Text/3.8_httpemptygif.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-22" playOrder="22">
+        <navLabel>
+          <text>HttpFcgi模块</text>
+        </navLabel>
+        <content src="Text/3.9_httpfcgi.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-23" playOrder="23">
+        <navLabel>
+          <text>Geo模块</text>
+        </navLabel>
+        <content src="Text/3.10_geo.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-24" playOrder="24">
+        <navLabel>
+          <text>HttpGzip模块</text>
+        </navLabel>
+        <content src="Text/3.11_httpgzip.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-25" playOrder="25">
+        <navLabel>
+          <text>HttpHeaders模块</text>
+        </navLabel>
+        <content src="Text/3.12_httpheaders.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-26" playOrder="26">
+        <navLabel>
+          <text>HttpIndex模块</text>
+        </navLabel>
+        <content src="Text/3.13_httpindex.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-27" playOrder="27">
+        <navLabel>
+          <text>HttpReferer模块</text>
+        </navLabel>
+        <content src="Text/3.14_httpreferer.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-28" playOrder="28">
+        <navLabel>
+          <text>HttpLimit zone</text>
+        </navLabel>
+        <content src="Text/3.15_httplimitzone.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-29" playOrder="29">
+        <navLabel>
+          <text>HttpLimitReqest模块</text>
+        </navLabel>
+        <content src="Text/3.16_httplimitrequest.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-30" playOrder="30">
+        <navLabel>
+          <text>HttpLog模块</text>
+        </navLabel>
+        <content src="Text/3.17_httplog.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-31" playOrder="31">
+        <navLabel>
+          <text>map</text>
+        </navLabel>
+        <content src="Text/3.18_map.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-32" playOrder="32">
+        <navLabel>
+          <text>Memcached</text>
+        </navLabel>
+        <content src="Text/3.19_memcached.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-33" playOrder="33">
+        <navLabel>
+          <text>HttpProxy模块</text>
+        </navLabel>
+        <content src="Text/3.20_httpproxy.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-34" playOrder="34">
+        <navLabel>
+          <text>HttpRewrite模块</text>
+        </navLabel>
+        <content src="Text/3.21_rewrite.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-35" playOrder="35">
+        <navLabel>
+          <text>HttpSSI模块</text>
+        </navLabel>
+        <content src="Text/3.22_httpssi.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-36" playOrder="36">
+        <navLabel>
+          <text>HttpUserId</text>
+        </navLabel>
+        <content src="Text/3.23_userid.xhtml" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-37" playOrder="37">
+      <navLabel>
+        <text>其他模块</text>
+      </navLabel>
+      <content src="Text/4.xhtml" />
+      <navPoint id="navPoint-38" playOrder="38">
+        <navLabel>
+          <text>Addition模块</text>
+        </navLabel>
+        <content src="Text/4.1_addition.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-39" playOrder="39">
+        <navLabel>
+          <text>EmbeddedPerl</text>
+        </navLabel>
+        <content src="Text/4.2_embeddedperl.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-40" playOrder="40">
+        <navLabel>
+          <text>flv</text>
+        </navLabel>
+        <content src="Text/4.3_flv.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-41" playOrder="41">
+        <navLabel>
+          <text>HttpGzipStatic</text>
+        </navLabel>
+        <content src="Text/4.4_gzipstatic.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-42" playOrder="42">
+        <navLabel>
+          <text>RandomIndex</text>
+        </navLabel>
+        <content src="Text/4.5_randomindex.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-43" playOrder="43">
+        <navLabel>
+          <text>HttpGeoIP</text>
+        </navLabel>
+        <content src="Text/4.6_geoip.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-44" playOrder="44">
+        <navLabel>
+          <text>HttpRealIp</text>
+        </navLabel>
+        <content src="Text/4.7_realip.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-45" playOrder="45">
+        <navLabel>
+          <text>HttpSSL</text>
+        </navLabel>
+        <content src="Text/4.8_ssl.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-46" playOrder="46">
+        <navLabel>
+          <text>StubStatus模块</text>
+        </navLabel>
+        <content src="Text/4.9_stubstatus.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-47" playOrder="47">
+        <navLabel>
+          <text>HttpSubstitution</text>
+        </navLabel>
+        <content src="Text/4.10_sub.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-48" playOrder="48">
+        <navLabel>
+          <text>HttpDav模块</text>
+        </navLabel>
+        <content src="Text/4.11_httpdav.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-49" playOrder="49">
+        <navLabel>
+          <text>GooglePerftools</text>
+        </navLabel>
+        <content src="Text/4.12_googleperftools.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-50" playOrder="50">
+        <navLabel>
+          <text>HttpXSLT</text>
+        </navLabel>
+        <content src="Text/4.13_xslt.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-51" playOrder="51">
+        <navLabel>
+          <text>HttpSecureLink</text>
+        </navLabel>
+        <content src="Text/4.14_securelink.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-52" playOrder="52">
+        <navLabel>
+          <text>HttpImageFilter</text>
+        </navLabel>
+        <content src="Text/4.15_imagefilter.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-53" playOrder="53">
+        <navLabel>
+          <text>Example Configuration</text>
+        </navLabel>
+        <content src="Text/4.15_imagefilter.xhtml#sigil_toc_id_1" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-54" playOrder="54">
+      <navLabel>
+        <text>mail模块</text>
+      </navLabel>
+      <content src="Text/5.xhtml" />
+      <navPoint id="navPoint-55" playOrder="55">
+        <navLabel>
+          <text>MailCore</text>
+        </navLabel>
+        <content src="Text/5.1_mailcore.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-56" playOrder="56">
+        <navLabel>
+          <text>MailAuth</text>
+        </navLabel>
+        <content src="Text/5.2_mailauth.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-57" playOrder="57">
+        <navLabel>
+          <text>MailProxy</text>
+        </navLabel>
+        <content src="Text/5.3_mailproxy.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-58" playOrder="58">
+        <navLabel>
+          <text>MailSSL</text>
+        </navLabel>
+        <content src="Text/5.4_mailssl.xhtml" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-59" playOrder="59">
+      <navLabel>
+        <text>安装</text>
+      </navLabel>
+      <content src="Text/6.xhtml" />
+      <navPoint id="navPoint-60" playOrder="60">
+        <navLabel>
+          <text>nginx在windows上的安装</text>
+        </navLabel>
+        <content src="Text/6.1_nginx_windows.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-61" playOrder="61">
+        <navLabel>
+          <text>nginx在freebsd上的安装</text>
+        </navLabel>
+        <content src="Text/6.2_nginx_freebsd.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-62" playOrder="62">
+        <navLabel>
+          <text>nginx在ubuntu上的安装</text>
+        </navLabel>
+        <content src="Text/6.3_nginx_ubuntu.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-63" playOrder="63">
+        <navLabel>
+          <text>nginx在fedora上的安装</text>
+        </navLabel>
+        <content src="Text/6.4_nginx_fedora.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-64" playOrder="64">
+        <navLabel>
+          <text>nginx php-fpm安装配置</text>
+        </navLabel>
+        <content src="Text/6.5_nginx_php_fpm.xhtml" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-65" playOrder="65">
+      <navLabel>
+        <text>配置示例和方法</text>
+      </navLabel>
+      <content src="Text/7.xhtml" />
+      <navPoint id="navPoint-66" playOrder="66">
+        <navLabel>
+          <text>完整例子</text>
+        </navLabel>
+        <content src="Text/7.1_fullexample.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-67" playOrder="67">
+        <navLabel>
+          <text>完整例子2</text>
+        </navLabel>
+        <content src="Text/7.2_fullexample2.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-68" playOrder="68">
+        <navLabel>
+          <text>虚拟主机</text>
+        </navLabel>
+        <content src="Text/7.3_virtualhost.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-69" playOrder="69">
+        <navLabel>
+          <text>负载均衡</text>
+        </navLabel>
+        <content src="Text/7.4_loadbalance.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-70" playOrder="70">
+        <navLabel>
+          <text>nginx防盗链</text>
+        </navLabel>
+        <content src="Text/7.5_doorchain.xhtml" />
+      </navPoint>
+      <navPoint id="navPoint-71" playOrder="71">
+        <navLabel>
+          <text>HWLoadbalancerCheckErrors</text>
+        </navLabel>
+        <content src="Text/7.6_checkerrors.xhtml" />
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>

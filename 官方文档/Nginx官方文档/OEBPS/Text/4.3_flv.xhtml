@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>flv</h2>
+
+  <p>This module provides the ability to seek within FLV (Flash) files using time-based offsets.</p>
+
+  <p>本模块提供FLV文件加载基于时间位移.</p>
+
+  <p>Module ngx_http_flv_module offers special handling of files it handles:</p>
+
+  <p>模块ngx_http_flv_module提供特殊处理的文件,它处理:</p>
+
+  <ul>
+    <li>adds FLV header to the requested file;</li>
+
+    <li>添加 FLV 头请求的文件;</li>
+
+    <li>transfers file, beginning from the displacement, specified in the request argument start=XXX.</li>
+
+    <li>传输文件，从开始的位移，在请求参数中指定 start=XXX.</li>
+  </ul>
+
+  <p>This module is not compiled by default and must be specified using the --with-http_flv_module argument to configure when compiling Nginx.</p>
+
+  <p>本模块必需在编译nginx时加上--with-http_flv_module.</p>
+
+  <p>例如：</p>
+  <pre class="code"><span class="kw3">location</span> ~ \.<span class="kw27">flv</span>$ <span class="br0">{</span>
+
+  <span class="kw27">flv</span>;
+<span class="br0">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpUserId</h2>
+
+  <p>The module ngx_http_userid_module gives out cookies for identification of clients. For logging it is possible to use variables <code>$uid_got</code> and <code>$uid_set</code>. Remark: keep in mind variables $uid_got and $uid_set are not accessible in SSI, because SSI filter module working before userid filter.</p>
+
+  <p>This module is compatible with <a class="external text" href="http://www.lexa.ru/programs/mod-uid-eng.html" rel="nofollow" title="http://www.lexa.ru/programs/mod-uid-eng.html">mod_uid</a> for Apache.</p>
+
+  <p>Example</p>
+  <pre class="code"><span class="kw24">userid</span>          on;
+<span class="kw24">userid_name</span>     uid;
+
+<span class="kw24">userid_domain</span>   example.com;
+<span class="kw24">userid_path</span>     /;
+<span class="kw24">userid_expires</span>  365d;
+<span class="kw24">userid_p3p</span>      <span class="st0">'policyref="/w3c/p3p.xml", CP="CUR ADM OUR NOR STA NID"'</span>;</pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">userid</h3>
+
+  <p><b>syntax:</b> <i>userid [on|v1|log||off]</i></p>
+
+  <p><b>default:</b> <i>userid off</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Enables or disables issuing cookies and logging requested cookies:</p>
+
+  <ul>
+    <li>on - enables version 2 cookies and logs them;</li>
+
+    <li>v1 - enables version 1 cookies and logs them;</li>
+
+    <li>log - do not send cookies, but write down incoming cookies to log;</li>
+
+    <li>off - do not send cookies, and don't write them to logs;</li>
+  </ul>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">userid_domain</h3>
+
+  <p><b>syntax:</b> <i>userid_domain [ name | none ]</i></p>
+
+  <p><b>default:</b> <i>userid_domain none</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Assigns the domain for cookie. The parameter "none" doesn't issue domain for cookie.</p>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">userid_expires</h3>
+
+  <p><b>syntax:</b> <i>userid_expires [ time | max ]</i></p>
+
+  <p><b>default:</b> <i>none</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Sets the expiration time for the cookie.</p>
+
+  <p>The parameter set &amp; send-out browser expiration time for cookie. Value "max" assigns the time on 31 December, 2037, 23:55:55 gmt. This is the maximum time that older browsers understand.</p>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">userid_name</h3>
+
+  <p><b>syntax:</b> <i>userid_name name</i></p>
+
+  <p><b>default:</b> <i>userid_name uid</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Assigns name to cookie.</p>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">userid_p3p</h3>
+
+  <p><b>syntax:</b> <i>userid_p3p line</i></p>
+
+  <p><b>default:</b> <i>none</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive assigns value for the header P3P, which will sent together with cookie.</p>
+
+  <h3 class="sigil_not_in_toc">userid_path</h3>
+
+  <p><b>syntax:</b> <i>userid_path path</i></p>
+
+  <p><b>default:</b> <i>userid_path /</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Sets the cookie path.</p>
+
+  <h3 class="sigil_not_in_toc">userid_service</h3>
+
+  <p><b>syntax:</b> <i>userid_service number</i></p>
+
+  <p><b>default:</b> <i>userid_service address</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive assigns the IP address of the server which gave out cookie. If not set, version 1 cookies set to zero, and for version 2 cookies the IP address of server.</p>
+
+  <h3 class="sigil_not_in_toc">References</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_userid_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_userid_module.html">Original Documentation</a></p>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpAuthBasic模块</h2>
+
+  <p>该模块可以使你使用用户名和密码基于 HTTP 基本认证方法来保护你的站点或其部分内容。</p>
+
+  <p>__实例配置__</p>
+  <pre>location  /  {
+: auth_basic            "Restricted";
+: auth_basic_user_file  conf/htpasswd;
+}
+</pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <ul>
+    <li>[#auth_basic auth_basic]</li>
+
+    <li>[#auth_basic_user_file auth_basic_user_file]</li>
+  </ul>
+
+  <h3 class="sigil_not_in_toc">auth_basic</h3>
+
+  <p><b>语法：</b> <i>auth_basic [ text|off ]</i></p>
+
+  <p><b>默认值：</b> <i>auth_basic off</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location, limit_except</i></p>
+
+  <p>该指令包含用于 HTTP 基本认证 的测试名和密码。分配的参数用于认证领域。值 "off" 可以使其覆盖来自上层指令的继承性。</p>
+
+  <h3 class="sigil_not_in_toc">auth_basic_user_file</h3>
+
+  <p><b>语法：</b> <i>auth_basic_user_file the_file</i></p>
+
+  <p><b>默认值：</b> <i>no</i></p>
+
+  <p><b>作用域：</b> <i>http, server, location, limit_except</i></p>
+
+  <p>该指令为某认证领域指定 htpasswd 文件名。</p>
+
+  <p>文件格式类似于下面的内容：</p>
+  <pre>用户名:密码
+用户名2:密码2:注释
+用户名3:密码3
+</pre>
+
+  <p>密码必须使用函数 crypt(3) 加密。 你可以使用来自 Apache 的 htpasswd 工具来创建密码文件。</p>
+
+  <p>你也可以使用perl 创建密码文件,pw.pl 的内容：</p>
+  <pre>#!/usr/bin/perl
+use strict;
+
+my $pw=$ARGV[0]&nbsp;;
+print crypt($pw,$pw)."\n";
+</pre>
+
+  <p>然後執行</p>
+  <pre>chmod +x pw.pl
+./pw.pl password
+papAq5PwY/QQM
+</pre>
+
+  <p>papAq5PwY/QQM 就是password 的crypt()密码</p>
+
+  <h3 class="sigil_not_in_toc">参考</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_auth_basic_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_auth_basic_module.html">原始文档</a></p>
+</body>
+</html>

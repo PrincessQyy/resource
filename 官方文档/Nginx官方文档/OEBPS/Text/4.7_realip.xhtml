@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpRealIp</h2>
+
+  <p>This module lets to change the client's IP address to value from request header (e. g. <code>X-Real-IP</code> or <code>X-Forwarded-For</code>).</p>
+
+  <p>It is useful if nginx works behind some proxy of L7 load balanver, and request come from local IP, but proxy add request header with client's IP.</p>
+
+  <p>This module isn't built by default, enable it with the configure option</p>
+  <pre>--with-http_realip_module</pre>
+
+  <p>User Note: "You will build a list of trusted proxies (see below) and the first IP in the header which is not trusted will be used as the client IP." Source: README of the Apache module <a class="external text" href="http://web.warhound.org/mod_extract_forwarded/README" rel="nofollow" title="http://web.warhound.org/mod_extract_forwarded/README">mod_extract</a> . Quite informative, about why and how this security feature is helpful.</p>
+
+  <p>Example:</p>
+  <pre class="code"><span class="kw30">set_real_ip_from</span>   <span class="nu0">192.168</span><span class="nu0">.1</span><span class="nu0">.0</span>/<span class="nu0">24</span>;
+<span class="kw30">set_real_ip_from</span>   <span class="nu0">192.168</span><span class="nu0">.2</span><span class="nu0">.1</span>;
+<span class="kw30">real_ip_header</span>     X-Real-IP;</pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">set_real_ip_from</h3>
+
+  <p><b>syntax:</b> <i>set_real_ip_from [the address|CIDR]</i></p>
+
+  <p><b>default:</b> none</p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>This directive describes the trusted addresses, which transfer accurate address for the replacement.</p>
+
+  <h3 class="sigil_not_in_toc">real_ip_header</h3>
+
+  <p><b>syntax:</b> <i>real_ip_header [X-Real-IP|X-Forwarded-For]</i></p>
+
+  <p><b>default:</b> <i>real_ip_header X-Real-IP</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>This directive sets the name of the header used for transferring the replacement IP address.</p>
+
+  <h3 class="sigil_not_in_toc">References</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_realip_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_realip_module.html">Original Documentation</a></p>
+</body>
+</html>

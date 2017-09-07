@@ -1,0 +1,325 @@
+﻿3月10
+自建CA并完成对服务器发证
+1、自建CA
+    生成一对密钥
+    生成自建证书
+2.证书申请
+    生成一对密钥
+    生成证书申请（.csr）
+    将申请发送给CA
+3、发证（CA）
+     签署证书
+
+OpenSSH
+    ssh ：协议
+    openssh：实现
+
+   两种认证：
+      基于口令
+      基于密钥
+
+DNS：Domain Name Service //协议
+     实现：BIND(Berkeley Internet Name Domain)
+     监听端口：
+        UDP:53
+        TCP:53
+
+    名称解析：将一种格式的信息转化为另外一种格式，以某关键字为标准查找某一数据库的过程
+
+passwd <--> nsswitch转换
+login：nsswitch为login提供服务
+nsswitch配置文件在/etc/nsswitch
+
+hosts：存放的为主机与ip、别名
+
+
+分布式数据库：将数据库切割，放在不同的服务器上
+
+根域（.）-->一级域(ICCNA)-->二级域（组织域）
+
+namespace：名称空间
+
+一级域：
+    组织域：.com,.org,.mil,.gov,.edu,
+    国家域：.cn,.hk,.tw,.jp,.ir(伊朗),.iq(伊拉克)，.us,.uk
+    反向域：.in-addr.arpa
+递归：逐层解析 
+迭代：DNS才会迭代
+根拒绝回答递归问题
+
+FQDN：Full Qualified Domain Name 完全域名解析
+FQDN --> IP 正向解析
+IP --> FQDN 反向解析
+
+查询：
+   递归查询：只发起一次请求，最终能得到答案
+   迭代：发起一次请求，不一定得到答案
+
+客户端指向的DNS服务器，一定是允许给本地主机做递归的
+
+数据库每一个条叫一个资源记录（Resource Record）,资源记录有类型 ，用于表示资源的功能
+SOA:Start Of Authority,起始授权
+NS:Name Server，域名服务器
+MX:mail eXchanger：邮件交换器
+A：Address，（FQDN-->IP）
+PTR: PoiTeR,（IP-->FQDN）
+AAAA:Address,FQDN-->IPv6
+CNAME:Canonical Name,正式名称（别名记录）
+
+DNS：FQDN --> IP
+
+正反向解析技术不同，因此不应该存放于同一个数据库文件中进行 
+
+域：Domain，逻辑概念
+区域：zone，物理概念
+
+DNS服务器的类型
+   主DNS服务器
+   辅助DNS服务器
+   缓存名称服务器
+
+DNS的数据库文件(区域数据文件，区域自身有名字)：文本文件，只能包含资源记录或宏定义，每行一个
+
+   资源记录的格式：
+      name [ttl(缓存时间)] IN 资源记录类型（RRtype）  Value
+    例子：
+       www  600(单位s) IN A 1.2.3.4
+       www.magedu.com.  600 IN A 1.2.3.4
+
+    SOA:
+        name:只能是区域名称，通常可以简写为@，例如：magedu.com.
+        value:有n个数值，最主要的是主DNS服务器的FQDN，点不可省略
+        注意：SOA必须是区域数据库文件第一条记录
+
+        例子：
+         @ 600 IN SOA  na.magedu.com. 管理员邮箱（dnsadmin.magedu.com.）（
+             序列号(serial number) ;注释内容，十进制数据，不能超过10位，通常使用日期，例如2014031001
+             刷新时间(refresh time) ;即每隔多久到主服务器检查一次
+             重试时间(retry time) ;应该小于refresh time
+             过期时间(expire time)
+             netgative answer ttl ;否定答案的ttl
+         ） 
+    NS:可以有多条
+       name:区域名称，通常可以简写为@
+       value：DNS服务器的FQDN(可以使用相对名称)
+       例子：
+       @ 600 IN NS ns
+
+    A:只能定义在正向区域数据文件中
+       name:FQDN（可以使用相对名称)
+       value:IP
+
+       例子：
+       www  600(单位s) IN A 1.2.3.4
+       www  600(单位s) IN A 1.2.3.5
+       可做轮询
+
+       www  600(单位s) IN A 1.2.3.4
+       ftp  600(单位s) IN A 1.2.3.4
+    但凡以FQDN做为其值的记录，应该给这个值做一条A记录
+
+
+    AAAA:
+
+    MX:可以有多个
+       name:区域名称，用于标识smtp服务器
+       value：包含优先级和FQDN
+           优先级：0-99，数字越小，级别越高，
+       例子：
+        @ 600 IN MX 10 mail
+        @ 600 IN MX 20 mail2
+
+    CNAME:
+          name ：FQDN
+          value :FQDN
+        例子：
+          ftp IN CHANE www
+
+    PTR：IP --> FQDN，只能定义在反向区域数据文件中,反向区域名称为逆向网络地址加.in.addr.arpa.后缀组成
+     name:IP，逆向的主机地址，例如172.16.100.7的name为7.100，完全格式为7.100.16.172.in-addr-arpa.
+     value:FQDN
+         例子：
+          4.3.2. 600 IN PTR www.magedu.com.
+
+
+区域传送：
+   辅助DNS服务器从主DNS服务器或其他的辅助DNS服务器请求数据传输过程
+
+   完全区域传送：传送区域的所有数据，AXFR
+   增量区域传送：传送区域中改变的数据部分，IXFR
+
+   BIND:isc(www.isc.org) DHCP
+     4:功能简单，安全
+     9:
+
+    协议DNS,实现BIND,进程named
+
+    chroot 为安全提供的机制
+
+案例：magelinux.com
+      172.16.130.
+
+      mail 172.16.130.3
+      www  172.16.130.4
+      pop -->mail
+      ftp -->www
+      dns:172.16.130.2
+
+主配置文件：定义区域 /etc/named.conf
+    至少有三个区域：
+      根、
+      locahost、
+      127.0.0.1
+区域数据文件：/var/named
+
+   named 
+       用户：named
+       组：named
+
+
+主配置文件：
+   options{
+        //全局选项
+   }
+   zone　"zone name" {
+      //定于区域
+   }
+   logging{
+       //日志文件
+   }
+   include：加载别的文件
+
+
+自定义
+optins{
+	directory "/var/named";
+};
+  zone "." IN{
+   type{hint(根)|master(主)|slave(从)|forward(转发)}
+   file "named.ca"
+  }
+name-checkconf 检查主配置文件
+named -u named
+name-checkzone "区域文件" 配置文件
+
+定义监听的地址
+
+recursion 是否允许递归查询
+
+dig 命令
+  dig [-t type] [-x addr] name @DNS服务器
+  +[no]trace [不]适用迭代
+  +[no]tcp 是否使用tcp
+  +[no]recurse：是否使用递归
+host
+  host[-t type] {name} [server]
+
+nslookup
+  nslookup>
+  server DNS_SERVER_IP
+  set q=TYPE
+  {name}
+
+反向解析区域数据库文件：区域名称以逆向的网络地址，并以.in-addr.arpa为后缀
+   第一条必须SOA
+   应该具有NS记录，但不能出现MX和A记录
+   较常见的微PTR记录
+    名称为逆向的主机名
+
+区域传送：
+  用dig模拟完全区域传送
+   dig -t axfr 区域名称 @server
+
+   主从同步：
+
+       /etc/resolv.conf
+  主从：
+    主：bind版本可以低于从的
+
+    主从可以不再同一网段
+
+   向区域中添加从服务器的关键两步
+      在上级获得授权
+      在区域数据文件中为从服务器添加一条NS记录和对应的A或PTR记录
+
+      masters{ip;};
+
+区域传送安全控制
+    allow-transfer{127.0.0.1;127.16.100.1}
+
+ rndc：Remote Name Domain Controller
+      远程管理BIND的工具
+
+      rndc:密钥
+        rndc:持有一半密钥，保存于rndc的配置文件中
+        BIND：持有一般密钥，保存在主配置文件中
+     rndc的配置文件/etc/rndc.conf
+        生成密钥 rndc-confgen
+
+     rndc
+        reload
+        reload zone
+        reconfig：重读配置文件并加载新增的区域
+
+        querylog：关闭或开启查询日志
+        stop  关闭服务
+        flush 清空服务器的缓存
+        flushname name：只清空指定名称相关的缓存
+        trace：打开debug，调试模式，debug有级别的概念，每执行一次提升一个等级
+        trace LEVEL：指定debug的级别
+
+        如果rndc无法正常工作，可尝试使用rndc-confgen生成/etc/rndc。conf配置文件，并将配置文件中的后半部分复制到BIND的主配置文件中按指示启用即可
+
+BIND子域授权的实现:
+   在父域的配置文件中添加如下项：
+      授权的子区域名称
+      子区域的名称服务器
+      子区域的名称服务器的IP地址
+
+      tech IN NS  dns.tec
+
+      glue record:胶水效果
+
+  配置区域转发：转发域
+      解析某本机不负责的区域内的名称时不转发给根，而是转给指定的主机：
+   zone "ZONE NAME" IN{
+    type forward;
+    forwarders { DNS_SERVER; };
+    forward only(仅转发)|first(先转发在找根)
+   }
+   配置转发的方式
+     转发非本机负责解析的所有区域
+      options{
+        forward only|frist
+        forwarders{ ip; }
+       }
+      转发某特定区域
+       zone"特定区域" IN{
+       type forward;
+        forwarders{ ip; }
+        forward only|frist
+       }
+       转发必须对方服务器支持递归
+
+安全控制选项：
+   allow-transfer{}；通常都需要启用，从服务器
+   allow-query{};此项仅用于服务器是缓存名称服务器时，只开放查询功能给本地客户端
+   allow-recursion{可以使用网段};允许递归的白名单
+   allow-update{ none; }:允许动态更新数据文件的主机白名单
+
+ACL:BIND支持使用访问控制列表
+    acl ACL_NAME{
+      172.16.0.0/16
+      192.168.0.0/24
+      127.0.0.0/8
+    }
+
+  访问控制列表只有定义后才能使用，通常acl要定义在named.conf的最上方
+  BIND有四个内置的acl
+    any：任何主机
+    none：无一主机
+    local：本机
+    localnet：本机所在的网络
+
+
+view，编译安装named，如何实现对named做压力测试,BIND dlz

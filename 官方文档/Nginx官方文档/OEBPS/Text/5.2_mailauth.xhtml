@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>MailAuth</h2>
+
+  <p>Example configuration<br />
+  配置举例：</p>
+  <pre>  auth_http           localhost:9000/cgi-bin/nginxauth.cgi;
+  auth_http_timeout   5;
+}
+</pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">auth_http</h3>
+
+  <p><b>syntax:</b> <i>auth_http</i> <i><b>URL</b></i></p>
+
+  <p><b>default:</b> <i>no</i></p>
+
+  <p><b>context:</b> <i>mail, server</i></p>
+
+  <p>With this directive you can set the URL to the external HTTP-like server for authorization. A description of the protocol can be found <a href="mailcore.html" title="NginxMailCoreModule">here</a> .<br />
+  使用这条指令你可以设置URL像HTTP服务器那样的验证。协议描述可以看 <a href="mailcore.html" title="NginxMailCoreModule">这里</a></p>
+
+  <h3 class="sigil_not_in_toc">auth_http_header</h3>
+
+  <p><b>syntax:</b> <i>auth_http_header</i> <i><b>header value</b></i></p>
+
+  <p><b>default:</b> <i>no</i></p>
+
+  <p><b>context:</b> <i>mail, server</i></p>
+
+  <p>With this directive you can add a HTTP header and value during the identification process. This makes it possible to use a shared secret to ensure that the request was answered by nginx.<br />
+  使用这条指令你可以添加HTTP头和值到验证进程中。这个使得可以用共享密码来却不请求得到Nginx的响应</p>
+
+  <p>For example:</p>
+  <pre>auth_http_header X-NGX-Auth-Key "secret_string";
+</pre>
+
+  <h3 class="sigil_not_in_toc">auth_http_timeout</h3>
+
+  <p><b>syntax:</b> <i>auth_http_timeout</i> <i><b>milliseconds;</b></i></p>
+
+  <p><b>default:</b> <i>60000</i></p>
+
+  <p><b>context:</b> <i>mail, server</i></p>
+
+  <p>With this directive you can set the time out for authentication process.<br />
+  使用这条指令你可以设置验证进程的超时时间</p>
+</body>
+</html>

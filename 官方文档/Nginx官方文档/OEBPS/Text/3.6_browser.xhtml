@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>Browser模块</h2>
+
+  <h3 class="sigil_not_in_toc">摘要</h3>
+
+  <p>This module creates variables, the values of which depend on the request header "User-agent":</p>
+
+  <p>本模块的变量基于请求头(header)中的"User-agent":</p>
+
+  <ul>
+    <li>$modern_browser - is equal to the value, assigned by directive modern_browser_value, if browser is identified as an <b>modern</b> browser;</li>
+
+    <li>$ancient_browser - 当等于指定给modern_browser_value的浏览器时，这个浏览器被认定为新版的浏览器;</li>
+
+    <li>$ancient_browser - is equal to the value, assigned by directive ancient_browser_value, if browser is identified as an <b>old</b> browser;</li>
+
+    <li>$ancient_browser - 当等于指定给ancient_browser_value的浏览器时，这个浏览器被认定为老版的浏览器;</li>
+
+    <li>$msie - is equal <b>1</b>, if browser is identified as MSIE with any version;</li>
+
+    <li>$msie - 当浏览器为MSIE的任何版本时，这个值等于1;</li>
+  </ul>
+
+  <p>If you don't need this module add --without-http_browser_module parameter to the ./configure call, at compile time.</p>
+
+  <p>如果不需要这个模块时，在编译的时候加上 --without-http_browser_module.</p>
+
+  <p>Example configuration 例如配置</p>
+
+  <p>Selection of the index file:</p>
+
+  <p>选择索引文件:</p>
+  <pre class="code"><span class="kw8">modern_browser_value</span> <span class="st0">"modern."</span>;
+
+<span class="kw8">modern_browser</span> msie <span class="nu0">5.5</span>;
+<span class="kw8">modern_browser</span> gecko <span class="nu0">1.0</span><span class="nu0">.0</span>;
+<span class="kw8">modern_browser</span> opera <span class="nu0">9.0</span>;
+<span class="kw8">modern_browser</span> safari <span class="nu0">413</span>;
+
+<span class="kw8">modern_browser</span> konqueror <span class="nu0">3.0</span>;
+<span class="kw3">index</span> <span class="kw3">index</span>.$<span class="br0">{</span><span class="kw8">modern_browser</span><span class="br0">}</span>html <span class="kw3">index</span>.html;</pre>
+
+  <p>Redirect for the old browsers:</p>
+
+  <p>定义老的浏览器:</p>
+  <pre class="code"><span class="kw8">modern_browser</span> msie <span class="nu0">5.0</span>;
+
+<span class="kw8">modern_browser</span> gecko <span class="nu0">0.9</span><span class="nu0">.1</span>;
+<span class="kw8">modern_browser</span> opera <span class="nu0">8.0</span>;
+<span class="kw8">modern_browser</span> safari <span class="nu0">413</span>;
+<span class="kw8">modern_browser</span> konqueror <span class="nu0">3.0</span>;
+
+<span class="kw8">modern_browser</span> unlisted;
+<span class="kw8">ancient_browser</span> Links Lynx Netscape4;
+&nbsp;
+<span class="kw22">if</span> <span class="br0">(</span><span class="re0">$ancient_browser</span><span class="br0">)</span><span class="br0">{</span>
+  <span class="kw22">rewrite</span>  ^  /ancient.html;
+<span class="br0">}</span></pre>
+
+  <h3 class="sigil_not_in_toc">指令</h3>
+
+  <h3 class="sigil_not_in_toc">ancient_browser</h3>
+
+  <p><b>syntax:</b> <i>ancient_browser line [ line... ]</i></p>
+
+  <p><b>default:</b> <i>no</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive assigns the substrings, during presence of which in the line "User-agent", browser are considered as <b>old</b>.<br />
+  Special line "netscape4" corresponds to regular expression "^Mozilla/[1-4] ".</p>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">ancient_browser_value</h3>
+
+  <p><b>syntax:</b> <i>ancient_browser_value line</i></p>
+
+  <p><b>default:</b> <i>ancient_browser_value 1</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive assigns value for the variables $ancient_browser.</p>
+
+  <p>定义 $ancient_browser的变量值.</p>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">modern_browser</h3>
+
+  <p><b>syntax:</b> <i>modern_browser browser version|unlisted</i></p>
+
+  <p><b>default:</b> <i>no</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive assigns which version of the browser is to be considered as <b>modern</b>.<br />
+  As browser you can assign the values msie, gecko (Mozilla-based browsers) opera, safari, konqueror.</p>
+
+  <p>Of versions it is possible to assign in size X, X.X, X.X.X, or X.X.X.X. maximum values for each of their sizes respectively - 4000, 4000.99, 4000.99.99, and 4000.99.99.99.</p>
+
+  <p>Special value "unlisted" indicates to consider modern browser, not described by the modern_browser and ancient_browser directives.<br />
+  Otherwise the neperechislennyy browser will be considered become obsolete.<br />
+  If the headers do not contain "User-agent", the browser is considered neperechislennym.</p>
+
+  <p><br /></p>
+
+  <h3 class="sigil_not_in_toc">modern_browser_value</h3>
+
+  <p><b>syntax:</b> <i>modern_browser_value line</i></p>
+
+  <p><b>default:</b> <i>modern_browser_value 1</i></p>
+
+  <p><b>context:</b> <i>http, server, location</i></p>
+
+  <p>Directive assigns value for the variables $modern_browser.</p>
+
+  <p>定义$modern_browser的变量值.</p>
+
+  <h3 class="sigil_not_in_toc">References</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_browser_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_browser_module.html">Original Documentation</a> new since 26.09.2006 version 0.4.3</p>
+</body>
+</html>

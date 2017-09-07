@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <link href="../Styles/Style.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/code.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>HttpIndex模块</h2>
+
+  <p><b>语法:</b> <i>index file [file...]</i></p>
+
+  <p><b>默认值:</b> <i>index index.html</i></p>
+
+  <p><b>作用域:</b> <i>http, server, location</i></p>
+
+  <p>该指令用来指定用来做默认文档的文件名，可以在文件名处使用变量。 如果您指定了多个文件，那么将按照您指定的顺序逐个查找。 可以在列表末尾加上一个绝对路径名的文件。</p>
+
+  <p>示例:</p>
+  <pre>index  index.$geo.html  index.0.html  /index.html;
+</pre>
+
+  <h3 class="sigil_not_in_toc">参见</h3>
+
+  <p><a class="external text" href="http://sysoev.ru/nginx/docs/http/ngx_http_index_module.html" rel="nofollow" title="http://sysoev.ru/nginx/docs/http/ngx_http_index_module.html">原始文档</a></p>
+</body>
+</html>
