@@ -1,0 +1,2 @@
+# resource
+just store
